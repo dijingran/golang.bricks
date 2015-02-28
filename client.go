@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bricks/conf"
 	"encoding/binary"
 	"fmt"
 	"log"
@@ -11,6 +10,8 @@ import (
 	"strconv"
 	"sync/atomic"
 	"time"
+
+	"golang.bricks/conf"
 )
 
 type Counter struct {
