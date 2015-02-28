@@ -1,7 +1,7 @@
 package conf
 
 const (
-	PATH = "D:/dev/workspace-idea/go-demo/src/bricks/"
+	PATH = "/usr/local/gocode/src/golang.bricks/"
 )
 
 func ServerFile() (s string) {

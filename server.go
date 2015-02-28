@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bricks/conf"
 	"bufio"
 	"io"
 	"log"
@@ -11,6 +10,8 @@ import (
 	"runtime"
 	"strconv"
 	"time"
+
+	"golang.bricks/conf"
 )
 
 func main() {
