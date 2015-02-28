@@ -1,3 +1,5 @@
+// +build mainClient
+
 package main
 
 import (
