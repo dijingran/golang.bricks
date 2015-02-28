@@ -70,8 +70,10 @@ func main() {
 
 func requestStackNum() (num int) {
 	tcpAddr, _ := net.ResolveTCPAddr("tcp4", SERVICE)
-	conn, _ := net.DialTCP("tcp", nil, tcpAddr) // default no delay
-	defer conn.Close()
+	conn, err := net.DialTCP("tcp", nil, tcpAddr) // default no delay
+	if err != nil {
+		panic(err)
+	}
 	conn.Write([]byte{byte(1)})
 	resp := make([]byte, 4)
 	conn.Read(resp)
@@ -80,7 +82,12 @@ func requestStackNum() (num int) {
 
 func transfer(ch chan []string, counter *Counter) {
 	tcpAddr, _ := net.ResolveTCPAddr("tcp4", SERVICE)
-	conn, _ := net.DialTCP("tcp", nil, tcpAddr) // default no delay
+	conn, err := net.DialTCP("tcp", nil, tcpAddr) // default no delay
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
 	defer conn.Close()
 	bricks := []string{}
 	start := time.Now().Unix()
