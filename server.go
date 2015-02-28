@@ -15,10 +15,9 @@ import (
 )
 
 func main() {
-	//	aaa := ""
-	//	fmt.Println(prepare(aaa, len(aaa)))
-	//	return
-	log.Printf("%d", runtime.NumCPU())
+	//makeFile(1024 * 1024 * 1024)
+	//return
+	log.Printf("runtime.NumCPU : %d", runtime.NumCPU())
 	runtime.GOMAXPROCS(2)
 	stacks := split(512 * 1024)
 	gn := len(stacks)
@@ -53,7 +52,6 @@ func main() {
 		go h.HandleClient(conn)
 		i++
 	}
-	//	makeFile(1024 * 1024 * 1024);
 }
 
 type Handler struct {
@@ -91,7 +89,7 @@ func (h *Handler) HandleClient(conn net.Conn) {
 // size : lines of each stack.
 func split(size int) (a [][]string) {
 	start := time.Now().Unix()
-	f, err := os.Open(conf.ServerFile())
+	f, err := os.Open(conf.SERVER_FILE)
 	if err != nil {
 		panic(err)
 	}
@@ -155,7 +153,7 @@ F:
 	}
 	log.Printf("Make file cost %d seconds.", (time.Now().Unix() - start))
 	start = time.Now().Unix()
-	f, _ := os.Create(conf.ServerFile())
+	f, _ := os.Create(conf.SERVER_FILE)
 	f.Write(b)
 	log.Printf("Write into disk cost %d seconds.", (time.Now().Unix() - start))
 }

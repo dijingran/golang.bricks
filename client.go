@@ -58,7 +58,7 @@ func main() {
 	log.Printf("got all bricks cost %d seconds.\n", (time.Now().Unix() - start))
 	start = time.Now().Unix()
 	// write into file
-	f, _ := os.Create(conf.ClientFile())
+	f, _ := os.Create(conf.CLIENT_FILE)
 	defer f.Close()
 	for _, e := range stacks {
 		for _, l := range e {
